@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Installed apps
     'accounts.apps.AccountsConfig',
+    'frontend.apps.FrontendConfig',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -9,8 +9,28 @@ import {
   MDBInput,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom";
 
-function App() {
+function LoginForm({ setIsLoggedIn }) {
+  const navigate = useNavigate();
+  const [userLoginInfo, setUserLoginInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInput = (event) => {
+    const { id } = event.target;
+    const { value } = event.target;
+    setUserLoginInfo({ ...userLoginInfo, [id]: value });
+  };
+
+  const handleSubmit = () => {
+    console.log(userLoginInfo);
+    console.log("this will submit your credentials to the backend");
+    setIsLoggedIn(true);
+    navigate("/profile");
+  };
+
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -24,22 +44,23 @@ function App() {
               <p className="text-white-50 mb-5">
                 Please enter your login and password!
               </p>
-
               <MDBInput
                 wrapperClass="mb-4 mx-5 w-100"
                 labelClass="text-white"
                 label="Email address"
-                id="formControlLg"
+                id="email"
                 type="email"
                 size="lg"
+                onChange={handleInput}
               />
               <MDBInput
                 wrapperClass="mb-4 mx-5 w-100"
                 labelClass="text-white"
                 label="Password"
-                id="formControlLg"
+                id="password"
                 type="password"
                 size="lg"
+                onChange={handleInput}
               />
 
               <p className="small mb-3 pb-lg-2">
@@ -47,7 +68,13 @@ function App() {
                   Forgot password?
                 </a>
               </p>
-              <MDBBtn outline className="mx-2 px-5" color="white" size="lg">
+              <MDBBtn
+                outline
+                className="mx-2 px-5"
+                color="white"
+                size="lg"
+                onClick={handleSubmit}
+              >
                 Login
               </MDBBtn>
 
@@ -60,7 +87,7 @@ function App() {
                 >
                   <MDBIcon fab icon="facebook-f" size="lg" />
                 </MDBBtn>
-                z
+
                 <MDBBtn
                   tag="a"
                   color="none"
@@ -95,4 +122,4 @@ function App() {
   );
 }
 
-export default App;
+export default LoginForm;

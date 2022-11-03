@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import {
   MDBBtn,
   MDBContainer,
@@ -14,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 function LoginForm({ setIsLoggedIn }) {
   const navigate = useNavigate();
   const [userLoginInfo, setUserLoginInfo] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -24,10 +26,35 @@ function LoginForm({ setIsLoggedIn }) {
     setUserLoginInfo({ ...userLoginInfo, [id]: value });
   };
 
-  const handleSubmit = () => {
-    console.log(userLoginInfo);
-    console.log("this will submit your credentials to the backend");
+  const handleError = (err) => {
+    console.warn(err);
+  };
+
+  const handleSubmit = async () => {
     setIsLoggedIn(true);
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": Cookies.get("csrftoken"),
+      },
+      body: JSON.stringify(userLoginInfo),
+    };
+
+    const response = await fetch("/dj-rest-auth/login/", options).catch(
+      () => handleError
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      Cookies.set("Authorization", `Token ${data.key}`);
+      const testing = Cookies.get("Authorization");
+      console.log(testing);
+    } else {
+      throw new Error("Network response was not OK.");
+    }
+
     navigate("/profile");
   };
 
@@ -44,6 +71,15 @@ function LoginForm({ setIsLoggedIn }) {
               <p className="text-white-50 mb-5">
                 Please enter your login and password!
               </p>
+              <MDBInput
+                wrapperClass="mb-4 mx-5 w-100"
+                labelClass="text-white"
+                label="Username"
+                id="username"
+                type="username"
+                size="lg"
+                onChange={handleInput}
+              />
               <MDBInput
                 wrapperClass="mb-4 mx-5 w-100"
                 labelClass="text-white"

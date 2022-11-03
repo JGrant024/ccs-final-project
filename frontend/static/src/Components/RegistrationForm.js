@@ -19,7 +19,6 @@ function RegistrationForm() {
             <h3 className="fw-bold mb-4 pb-2 pb-md-0 mb-md-5">
               Registration Form
             </h3>
-
             <MDBRow>
               <MDBCol md="6">
                 <MDBInput

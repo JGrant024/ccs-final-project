@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 // import "./App.css";
@@ -7,7 +8,27 @@ import UserProfile from "./Components/UserProfile";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log(isLoggedIn);
+
+  const handleLogout = async () => {
+    const handleError = (err) => {
+      console.warn(err);
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFTOKEN": Cookies.get("csrftoken"),
+      },
+    };
+    const response = await fetch("dj-rest-auth/logout/", options).catch(
+      () => handleError
+    );
+
+    if (response.ok) {
+      setIsLoggedIn(false);
+    } else throw new Error("there was a network error");
+  };
 
   const Layout = () => {
     return (
@@ -28,7 +49,7 @@ function App() {
               </>
             ) : (
               <li>
-                <button onClick={() => setIsLoggedIn(false)}>Sign Out</button>
+                <button onClick={handleLogout}>Sign Out</button>
               </li>
             )}
           </ul>

@@ -123,27 +123,32 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
+
 STATIC_URL = 'static/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # Substituting a custom User model
 # https://docs.djangoproject.com/en/3.1/topics/auth/customizing/#substituting-a-custom-user-model
+
 AUTH_USER_MODEL = "accounts.User"
 
 # Static file directories
 # https://docs.djangoproject.com/en/3.1/ref/settings/#staticfiles-dirs
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/static/build/static'),)
-REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
 
 # Managing files
 # https://docs.djangoproject.com/en/3.1/topics/files/#managing-files

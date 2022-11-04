@@ -1,11 +1,12 @@
 import Cookies from "js-cookie";
 import React, { useState } from "react";
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserProfile from "./pages/UserProfile";
 import LoginForm from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Welcome from "./pages/Welcome";
-import Group from "./pages/Group";
+import GroupProfile from "./pages/Group";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleError = (err) => {
@@ -22,7 +23,7 @@ function App() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRFTOKEN": Cookies.get("csrftoken")
+        "X-CSRFTOKEN": Cookies.get("csrftoken"),
       },
     };
     const response = await fetch("dj-rest-auth/logout/", options).catch(
@@ -38,7 +39,7 @@ function App() {
         <Route path="/login" element={<LoginForm setIsLoggedIn />} />
         <Route path="/signup" element={<SignUp setIsLoggedIn />} />
         <Route path="profile" element={<UserProfile />} />
-        <Route path="/group" element={<Group/>}/>
+        <Route path="/group" element={<GroupProfile />} />
       </Routes>
     </BrowserRouter>
   );

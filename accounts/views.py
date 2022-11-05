@@ -4,15 +4,25 @@ from .serializers import ProfileSerializer
 from django.shortcuts import get_object_or_404
 
 
-# see a list of all profiles
-class ProfileListAPIView(generics.ListCreateAPIView):
+# list of all profiles
+
+
+class ProfileListAPIView(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
+# create profile from current logged in user / see current user profile
+
+
+class ProfileListCreateAPIView(generics.ListCreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-# see a single user profile
+
+# update the current user's profile
 
 
 class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -27,6 +37,10 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 # see another user's profile
 
 
-class ProfileViewAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Profile.objects.all()
+class ProfileViewAPIView(generics.RetrieveAPIView):
     serializer_class = ProfileSerializer
+    queryset = Profile.objects.filter()
+
+    def get_object(self):
+        user = self.kwargs['pk']
+        return get_object_or_404(Profile, user=user)

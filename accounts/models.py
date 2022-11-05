@@ -10,13 +10,9 @@ class User(AbstractUser):
 class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
-    username = models.CharField(max_length=255)
     profile_picture = models.ImageField(upload_to="profiles/", blank=True)
+    username = models.CharField(max_length=255)
     bio = models.CharField(max_length=255)
-    # followers = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
-    # following = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.username

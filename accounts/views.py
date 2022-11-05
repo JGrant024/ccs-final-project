@@ -1,8 +1,15 @@
 from rest_framework import generics
 from .models import Profile
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, GroupSerializer
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import Group
 
+# view groups
+
+
+class GroupListView(generics.ListAPIView):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
 
 # list of all profiles
 
@@ -28,6 +35,13 @@ class ProfileListCreateAPIView(generics.ListCreateAPIView):
 class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
 
+    def get_queryset(self):
+        groups = Profile.objects.all()
+        for group in groups:
+            queryset = Group.objects.filter(
+                group=group)
+        return queryset
+
     def get_object(self):
         return get_object_or_404(Profile, user=self.request.user)
 
@@ -37,7 +51,7 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 # see another user's profile
 
 
-class ProfileViewAPIView(generics.RetrieveAPIView):
+class ProfileViewAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
     queryset = Profile.objects.filter()
 

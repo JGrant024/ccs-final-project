@@ -1,12 +1,10 @@
 from rest_framework import serializers
-from .models import Profile
+from .models import Profile, RompGroup
 from django.contrib.auth import get_user_model
 from allauth.utils import email_address_exists
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
-from django.contrib.auth.models import Group
-
 
 User = get_user_model()
 
@@ -17,21 +15,21 @@ class UserSerializer(serializers.ModelSerializer):
         field = "__all__"
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class RompGroupSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Group
+        model = RompGroup
         fields = "__all__"
+        depth = 1
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    email = serializers.ReadOnlyField(source="user.email")
     full_name = serializers.SerializerMethodField()
-    groups = GroupSerializer(many=True, source="user.groups")
+    email = serializers.ReadOnlyField(source="user.email")
 
     class Meta:
         model = Profile
-        fields = ("email", "full_name", "profile_picture",
-                  "bio", "user_id", "groups", "username")
+        fields = ("user_id", "full_name", "username", "email", "profile_picture",
+                  "bio")
         depth = 1
 
     def get_full_name(self, obj):

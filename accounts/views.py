@@ -1,15 +1,20 @@
 from rest_framework import generics
-from .models import Profile
-from .serializers import ProfileSerializer, GroupSerializer
+from .models import Profile, RompGroup
+from .serializers import ProfileSerializer, RompGroupSerializer
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import Group
+
+
+# Evenerthing related to a user group
 
 # view groups
+class RompGroupListView(generics.ListCreateAPIView):
+    queryset = RompGroup.objects.all()
+    serializer_class = RompGroupSerializer
 
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
 
-class GroupListView(generics.ListAPIView):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+ # Everything related to a user's profile
 
 # list of all profiles
 

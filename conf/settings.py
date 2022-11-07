@@ -42,8 +42,9 @@ INSTALLED_APPS = [
 
     # Local
     'accounts.apps.AccountsConfig',
-
+    'api.apps.ApiConfig',
     'frontend.apps.FrontendConfig',
+    'recommendations.apps.RecommendationsConfig'
 ]
 
 REST_FRAMEWORK = {

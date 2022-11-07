@@ -40,13 +40,6 @@ class ProfileListCreateAPIView(generics.ListCreateAPIView):
 class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
 
-    def get_queryset(self):
-        groups = Profile.objects.all()
-        for group in groups:
-            queryset = Group.objects.filter(
-                group=group)
-        return queryset
-
     def get_object(self):
         return get_object_or_404(Profile, user=self.request.user)
 

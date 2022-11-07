@@ -9,7 +9,8 @@ class User(AbstractUser):
 
 class RompGroup(models.Model):
     name = models.CharField(max_length=255, blank=True)
-    users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True)
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, related_name='member')
 
 
 class Profile(models.Model):

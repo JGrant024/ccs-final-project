@@ -12,10 +12,11 @@ User = get_user_model()
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        field = "__all__"
+        fields = "__all__"
 
 
 class RompGroupSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = RompGroup
         fields = "__all__"

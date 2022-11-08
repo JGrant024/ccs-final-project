@@ -1,6 +1,7 @@
 import {useState,} from "react"; 
 import {GoogleMapProvider,
 } from "@ubilabs/google-maps-react-hooks"; 
+import GoogleMap from "@ubilabs/google-maps-react-hooks/dist/google-map";
 
 const mapOptions = {
     zoom: 12, 
@@ -28,5 +29,7 @@ const mapOptions = {
 
  
 <script async
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4&libraries=places&callback=initMap">
 </script>
+
+ 

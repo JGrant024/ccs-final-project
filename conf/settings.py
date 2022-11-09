@@ -57,8 +57,12 @@ REST_FRAMEWORK = {
     ]
 }
 
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'accounts.serializers.CustomLoginSerializer',
+}
+
 REST_AUTH_REGISTER_SERIALIZERS = {
-    "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer"
+    "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
 }
 
 MIDDLEWARE = [

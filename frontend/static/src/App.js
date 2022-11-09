@@ -12,12 +12,14 @@ function App() {
   const handleError = (err) => {
     console.warn(err);
   };
+
   const handleResponse = (response) => {
     if (response.ok) {
       Cookies.remove("Authorization");
       setIsLoggedIn(false);
     } else throw new Error("there was a network error");
   };
+
   const handleLogout = async () => {
     const options = {
       method: "POST",
@@ -36,7 +38,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/login" element={<LoginForm setIsLoggedIn />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp setIsLoggedIn />} />
         <Route path="profile" element={<UserProfile />} />
         <Route path="/group" element={<GroupProfile />} />

@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
-const LoginForm = ({ setIsLoggedIn }) => {
+
+const LoginForm = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const [error, setError] = useState();
+
   const handleInput = (event) => {
     const { id } = event.target;
     const { value } = event.target;
     setUserInfo({ ...userInfo, [id]: value });
   };
+
   const handleError = (error) => {
     console.warn(error);
   };
+
   const handleResponse = async (response) => {
     if (response.ok) {
       const data = await response.json();
@@ -25,9 +29,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
       setError(response.statusText);
       throw new Error("Network response was not OK.");
     }
-    setIsLoggedIn(true);
     navigate("/profile");
   };
+
   const handleSubmit = async () => {
     const options = {
       method: "POST",
@@ -37,11 +41,15 @@ const LoginForm = ({ setIsLoggedIn }) => {
       },
       body: JSON.stringify(userInfo),
     };
+
     const response = await fetch("/dj-rest-auth/login/", options).catch(
       () => handleError
     );
     handleResponse(response);
   };
+
+  console.log(userInfo);
+
   return (
     <section className="flex-center-container">
       <section className="formBox">
@@ -52,14 +60,14 @@ const LoginForm = ({ setIsLoggedIn }) => {
         <form onSubmit={handleSubmit}>
           <div className={"inputBox"}>
             <input
-              type="email"
-              id="email"
+              type="username"
+              id="username"
               autoComplete="off"
               onChange={handleInput}
               required
             />
-            <label className="flex-center" htmlFor="email">
-              Email
+            <label className="flex-center" htmlFor="username">
+              Username
             </label>
           </div>
           <div className={"inputBox"}>

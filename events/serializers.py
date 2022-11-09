@@ -12,7 +12,7 @@ class EventCreateSerializer(serializers.ModelSerializer):
         fields = ''
 
 
-class EventReadSerializer(serializers.ModelSerializer):
+class EventDetailSerializer(serializers.ModelSerializer):
     pass
 
     class Meta: 

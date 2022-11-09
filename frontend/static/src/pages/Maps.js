@@ -21,11 +21,10 @@ const mapOptions = {
       mapContainer={mapContainer} style={{ height: "100vh"}}
       >
         <div ref={(node) => setMapContainer(node)} />
-  
+        <location />
     </GoogleMapProvider>
   }
   
-
 
  
 <script async

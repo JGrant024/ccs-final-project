@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Profile, RompGroup
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 from allauth.utils import email_address_exists
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
@@ -35,6 +35,38 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_full_name(self, obj):
         return f'{obj.user.first_name} {obj.user.last_name}'
+
+
+class CustomLoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=255, allow_blank=False)
+    password = serializers.CharField(
+        style={'input_type': 'password'}, trim_whitespace=False)
+
+    def validate(self, attrs):
+        username = attrs.get('username')
+        password = attrs.get('password')
+
+        if username and password:
+            if User.objects.filter(username=username).exists():
+                user = authenticate(request=self.context.get('request'),
+                                    username=username, password=password)
+
+            else:
+                msg = {'detail': 'Username is not registered.',
+                       'register': False}
+                raise serializers.ValidationError(msg)
+
+            if not user:
+                msg = {
+                    'detail': 'Unable to log in with provided credentials.', 'register': True}
+                raise serializers.ValidationError(msg, code='authorization')
+
+        else:
+            msg = 'Must include "username" and "password".'
+            raise serializers.ValidationError(msg, code='authorization')
+
+        attrs['user'] = user
+        return attrs
 
 
 class CustomRegisterSerializer(serializers.Serializer):

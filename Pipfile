@@ -12,7 +12,7 @@ psycopg2-binary = "~=2.9.4"
 djangorestframework = "~=3.14.0"
 dj-rest-auth = "~=2.2.5"
 django-allauth = "~=0.51.0"
-pillow = "*"
+pillow = "~=9.3.0"
 
 [dev-packages]
 autopep8 = "*"

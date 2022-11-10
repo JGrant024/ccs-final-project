@@ -158,6 +158,7 @@ AUTH_USER_MODEL = "accounts.User"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "frontend/static/build/static"),)
 
 # Managing files
 # https://docs.djangoproject.com/en/3.1/topics/files/#managing-files

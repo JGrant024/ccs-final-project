@@ -1,11 +1,6 @@
 import React from "react";
 import { LoadScript } from "@react-google-maps/api";
 import Map from "./Map";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-
 
 const mapContainerStyle = {
   width: "400px",
@@ -28,5 +23,3 @@ function UserMap() {
 // export default React.memo(MyComponent)
 
 export default UserMap;
-
- 

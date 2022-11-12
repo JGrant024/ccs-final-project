@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .models import Profile, RompGroup
-from .serializers import ProfileSerializer, RompGroupSerializer
+from .models import Profile, RompGroup, Membership
+from .serializers import ProfileSerializer, RompGroupSerializer, MembershipSerializer
 from django.shortcuts import get_object_or_404
 
 
@@ -10,6 +10,14 @@ from django.shortcuts import get_object_or_404
 class RompGroupListView(generics.ListCreateAPIView):
     queryset = RompGroup.objects.all()
     serializer_class = RompGroupSerializer
+
+    def perform_create(self, serializer):
+        return serializer.save(user=self.request.user)
+
+
+class MembershipListView(generics.ListCreateAPIView):
+    queryset = Membership.objects.all()
+    serializer_class = MembershipSerializer
 
     def perform_create(self, serializer):
         return serializer.save(user=self.request.user)

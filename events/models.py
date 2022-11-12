@@ -14,8 +14,8 @@ class Event(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     start = models.DateField(auto_now=False, blank=True)
     place = models.JSONField(default=place_default, blank=True)
-    group = models.ForeignKey(
-        RompGroup, related_name="romp_group", on_delete=models.CASCADE, blank=True)
+    # group = models.ForeignKey(
+    #     RompGroup, related_name="romp_group", on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return self.name

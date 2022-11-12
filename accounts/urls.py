@@ -6,6 +6,7 @@ app_name = 'api_v1'
 
 urlpatterns = [
     path('groups/', views.RompGroupListView.as_view()),
+    path('memberhsip/', views.MembershipListView.as_view()),
     path('profiles/', views.ProfileListAPIView.as_view()),
     path('profiles/user/create', views.ProfileListCreateAPIView.as_view()),
     path('profiles/user/update', views.ProfileDetailAPIView.as_view()),

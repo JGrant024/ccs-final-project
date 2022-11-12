@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Profile, RompGroup
+from .models import Profile, RompGroup, Membership
 from django.contrib.auth import get_user_model, authenticate
 from allauth.utils import email_address_exists
 from allauth.account import app_settings as allauth_settings
@@ -15,8 +15,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class RompGroupSerializer(serializers.ModelSerializer):
+class MembershipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membership
+        fields = "__all__"
 
+
+class RompGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = RompGroup
         fields = "__all__"

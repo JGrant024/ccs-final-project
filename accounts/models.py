@@ -10,7 +10,16 @@ class User(AbstractUser):
 class RompGroup(models.Model):
     name = models.CharField(max_length=255, blank=True)
     members = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name='member')
+        settings.AUTH_USER_MODEL, through="Membership")
+
+    def __str__(self):
+        return self.name
+
+
+class Membership(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    group = models.ForeignKey(RompGroup, on_delete=models.CASCADE)
 
 
 class Profile(models.Model):

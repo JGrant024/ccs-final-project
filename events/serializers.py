@@ -1,17 +1,10 @@
 from rest_framework import serializers
-from .models import Event 
-from django.contrib.auth.models import User
-from django.conf import settings 
-
-class EventCreateSerializer(serializers.ModelSerializer): 
-    pass
-
-    class Meta: 
-        model = Event
-        fields = ''
+from .models import Event
 
 
 class EventSerializer(serializers.ModelSerializer):
-    has_owner_permissions = serializers.SerializerMethodField('get_owner_status')
-    owner = serializers.ReadOnlyField(source='organizer.username')
-    attendance = EventCreateSerializer(many=True, read_only=True)
+    organizer = serializers.ReadOnlyField(source='organizer_id.username')
+
+    class Meta:
+        model = Event
+        fields = "__all__"

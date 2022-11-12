@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'api.apps.ApiConfig',
     'frontend.apps.FrontendConfig',
-    'events.apps.EventsConfig',
+    'events.apps.EventsConfig'
 ]
 
 REST_FRAMEWORK = {

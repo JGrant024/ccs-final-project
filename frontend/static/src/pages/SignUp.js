@@ -26,6 +26,7 @@ const SignUp = ({ setIsLoggedIn }) => {
     if (response.ok) {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
+      
     } else {
       setError(response.statusText);
       throw new Error("Network response was not OK.");

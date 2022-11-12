@@ -1,6 +1,6 @@
 import React from "react";
 import { LoadScript } from "@react-google-maps/api";
-import Map from "./Map";
+import Recommendations from "./Recommendations";
 
 const mapContainerStyle = {
   width: "400px",
@@ -12,10 +12,15 @@ const center = {
   lng: -82.394,
 };
 
+const libraries = ["places"];
+
 function UserMap() {
   return (
-    <LoadScript googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4">
-      <Map mapContainerStyle={mapContainerStyle} center={center} zoom={10} />
+    <LoadScript
+      googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4"
+      libraries={libraries}
+    >
+      <Recommendations />
     </LoadScript>
   );
 }

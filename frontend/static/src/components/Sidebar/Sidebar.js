@@ -8,14 +8,15 @@ import {
 } from "react-icons/md";
 import { BsPersonCircle, BsThreeDots } from "react-icons/bs";
 import { useEffect, useState } from "react";
-import { GiSittingDog } from "react-icons/gi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faOtter } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 
 const LogoSection = () => {
   return (
     <section className={styles.logo}>
-      <GiSittingDog className={styles.icon} />
+  <FontAwesomeIcon icon={faOtter} className="icon" />
     </section>
   );
 };

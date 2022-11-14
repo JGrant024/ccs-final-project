@@ -24,11 +24,11 @@ function App() {
     <BrowserRouter>
       <>{token && <Sidebar />}</>
       <Routes>
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="welcome" element={<Welcome />} />
+        <Route path="login" element={<LoginForm />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="profile" element={<UserProfile />} />
-        <Route path="/group" element={<GroupProfile />} />
+        <Route path="group" element={<GroupProfile />} />
       </Routes>
     </BrowserRouter>
   );

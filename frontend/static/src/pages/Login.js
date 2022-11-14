@@ -25,11 +25,11 @@ const LoginForm = () => {
     if (response.ok) {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
+      navigate("/profile");
     } else {
       setError(response.statusText);
       throw new Error("Network response was not OK.");
     }
-    navigate("/profile");
   };
 
   const handleSubmit = async () => {
@@ -47,8 +47,6 @@ const LoginForm = () => {
     );
     handleResponse(response);
   };
-
-  console.log(userInfo);
 
   return (
     <section className="flex-center-container">
@@ -93,6 +91,5 @@ const LoginForm = () => {
     </section>
   );
 };
-
 
 export default LoginForm;

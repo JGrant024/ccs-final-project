@@ -19,7 +19,26 @@ function Recommendations(props) {
 
     const nearbyRequest = {
       location: { lat: 34.8526, lng: -82.394 },
-      types:"aquarium","amusement_park": "bar","bakery": "beauty_salon", "book_store": "bowling_alley", "bicycle_store": "campground", "casino":"church", "cafe":"clothing_store","city_hall": "department_store", "electronics_store": "furniture_store", "gym": "hair_care", "hardware_store": "hospital", "jewelry_store": "library", "liquor_store": "lodging","movie_rental": "movie_theater", "museum": "night_club", "park": "pet_store", "restaurant": "rv_park", "shoe_store": "shopping_mall", "spa": "stadium", "tourist_attraction": "zoo",
+      types: "aquarium",
+      amusement_park: "bar",
+      bakery: "beauty_salon",
+      book_store: "bowling_alley",
+      bicycle_store: "campground",
+      casino: "church",
+      cafe: "clothing_store",
+      city_hall: "department_store",
+      electronics_store: "furniture_store",
+      gym: "hair_care",
+      hardware_store: "hospital",
+      jewelry_store: "library",
+      liquor_store: "lodging",
+      movie_rental: "movie_theater",
+      museum: "night_club",
+      park: "pet_store",
+      restaurant: "rv_park",
+      shoe_store: "shopping_mall",
+      spa: "stadium",
+      tourist_attraction: "zoo",
       radius: 50000,
 
       // Defines the distance (in meters) within which to return place results. You may bias results to a specified circle by passing a location and a radius parameter. Doing so instructs the Places service to prefer showing results within that circle; results outside of the defined area may still be displayed.
@@ -29,8 +48,6 @@ function Recommendations(props) {
       // Autocomplete: 50,000 meters
 
       // https://developers.google.com/maps/documentation/places/web-service/autocomplete
-
-   
     };
 
     setRecommendation({
@@ -43,9 +60,6 @@ function Recommendations(props) {
 
     services.nearbySearch(nearbyRequest, getSearchByResults);
   }, [setSearchByResults, searchByResults]);
-
-  console.log(searchByResults);
-  console.log(recommendation);
 
   return <div id="map"></div>;
 }

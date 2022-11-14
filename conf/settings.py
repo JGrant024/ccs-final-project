@@ -59,6 +59,7 @@ REST_FRAMEWORK = {
 
 REST_AUTH_SERIALIZERS = {
     'LOGIN_SERIALIZER': 'accounts.serializers.CustomLoginSerializer',
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
 }
 
 REST_AUTH_REGISTER_SERIALIZERS = {

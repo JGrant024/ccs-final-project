@@ -1,45 +1,33 @@
 import Cookies from "js-cookie";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserProfile from "./pages/UserProfile";
 import LoginForm from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Welcome from "./pages/Welcome";
 import GroupProfile from "./pages/Group";
+import { Sidebar } from "./components/Sidebar/Sidebar";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleError = (err) => {
-    console.warn(err);
-  };
+  const [token, setToken] = useState();
 
-  const handleResponse = (response) => {
-    if (response.ok) {
-      Cookies.remove("Authorization");
-      setIsLoggedIn(false);
-    } else throw new Error("there was a network error");
-  };
+  useEffect(() => {
+    const token = Cookies.get("Authorization");
+    if (token) {
+      setToken(token);
+    }
+  }, [token]);
 
-  const handleLogout = async () => {
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFTOKEN": Cookies.get("csrftoken"),
-      },
-    };
-    const response = await fetch("dj-rest-auth/logout/", options).catch(
-      () => handleError
-    );
-    handleResponse(response);
-  };
+  console.log(token);
 
   return (
     <BrowserRouter>
+      <>{token && <Sidebar />}</>
       <Routes>
-        <Route path="/" element={<Welcome />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignUp setIsLoggedIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<></>} />
         <Route path="profile" element={<UserProfile />} />
         <Route path="/group" element={<GroupProfile />} />
       </Routes>

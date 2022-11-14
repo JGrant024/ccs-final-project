@@ -1,6 +1,7 @@
 import React from "react";
 import { LoadScript } from "@react-google-maps/api";
 import Recommendations from "./Recommendations";
+import { Sidebar } from "../components/Sidebar/Sidebar";
 
 const mapContainerStyle = {
   width: "400px",
@@ -20,7 +21,9 @@ function UserMap() {
       googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4"
       libraries={libraries}
     >
+      <Sidebar />
       <Recommendations />
+      <div>Hey!</div>
     </LoadScript>
   );
 }

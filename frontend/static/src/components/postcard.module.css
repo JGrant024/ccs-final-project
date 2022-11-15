@@ -1,0 +1,75 @@
+.postContainer {
+    box-shadow: var(--dark-shadow);
+    border-bottom: 1px solid var(--clr-grey-100);
+    border-top: 1px solid var(--clr-grey-100);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 1.2rem;
+    position: relative;
+    border-radius: 10px;
+}
+
+.postAccountDetails,
+.post,
+.buttons,
+.postPhoto {
+    padding: 0.5rem;
+
+}
+
+.postAccountDetails {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.displayName,
+.userName {
+    cursor: pointer;
+    color: var(--font-color-light);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.timedate {
+    font-size: 0.7rem;
+    display: flex;
+}
+
+.userName {
+    line-height: 0;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--clr-grey-60);
+}
+
+
+.timedate {
+    display: flex;
+    gap: 8px;
+    margin-left: 0.5rem;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.postPhoto {
+    /* max-height: 700px; */
+    border-radius: 1rem;
+    object-fit: contain;
+}
+
+.creatorTag {
+    background: rgba(29, 103, 240, 0.5);
+    padding: 0 0.5rem;
+    border-radius: 10px;
+}

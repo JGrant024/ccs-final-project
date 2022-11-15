@@ -6,9 +6,9 @@ import styles from "./profile.module.css";
 
 const Profile = (props) => {
   const { profileID } = useParams();
-  const { id } = props.loggedInUser;
+  const id = props.loggedInUser?.id;
   const [user, setUserInfo] = useState();
-  console.log(id);
+  console.log({ id });
   console.log(profileID);
 
   useEffect(() => {

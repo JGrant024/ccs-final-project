@@ -45,6 +45,10 @@ function App() {
         <Route path="signup" element={<SignUp />} />
         <Route path="/" element={<></>} />
         <Route
+          path="/profile"
+          element={<Profile loggedInUser={loggedInUser} />}
+        />
+        <Route
           path="/profile/:profileID"
           element={<Profile loggedInUser={loggedInUser} />}
         />

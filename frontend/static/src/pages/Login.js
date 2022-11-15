@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Button from "react-bootstrap/Button";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -25,7 +25,10 @@ const LoginForm = () => {
     if (response.ok) {
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
-      navigate("/profile");
+      props.setIsLoggedIn(true);
+      console.log(data);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      navigate("/");
     } else {
       setError(response.statusText);
       throw new Error("Network response was not OK.");

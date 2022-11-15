@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./sidebar.module.css";
 import {
   MdOutlineFeed,
@@ -7,30 +8,22 @@ import {
   MdBookmark,
 } from "react-icons/md";
 import { BsPersonCircle, BsThreeDots } from "react-icons/bs";
-import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faOtter } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 const LogoSection = () => {
   return (
     <section className={styles.logo}>
-  <FontAwesomeIcon icon={faOtter} className="icon" />
+      <FontAwesomeIcon icon={faOtter} className="icon" />
     </section>
   );
 };
 
-export const Sidebar = () => {
+export const Sidebar = (props) => {
   const [dropDown, setDropDown] = useState(false);
-  const [user, setUser] = useState();
+  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetch("api/v1/users/profiles/user/update")
-      .then((response) => response.json())
-      .then((data) => setUser(data));
-  }, [user]);
 
   const handleError = (err) => {
     console.warn(err);
@@ -39,6 +32,8 @@ export const Sidebar = () => {
   const handleResponse = (response) => {
     if (response.ok) {
       Cookies.remove("Authorization");
+      props.setIsLoggedIn(false);
+      localStorage.clear();
       navigate("/welcome");
     } else throw new Error("there was a network error");
   };
@@ -117,7 +112,7 @@ export const Sidebar = () => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to={`/profile/${user?.user_id}`}
+          to={`/profile/${user.id}`}
         >
           <BsPersonCircle className={styles.icon} />
           <p className="flex-center">My Profile</p>
@@ -126,17 +121,9 @@ export const Sidebar = () => {
 
       <section className={styles.accountSetting}>
         <div className={styles.account}>
-          {user?.profile_picture ? (
-            <img
-              className="avatar avatar-standard"
-              src={user?.profile_picture}
-              alt="profile"
-            />
-          ) : (
-            <BsPersonCircle className="avatar avatar-standard" />
-          )}
+          <BsPersonCircle className="avatar avatar-standard" />
 
-          <span className="flex-center">{user?.username}</span>
+          <span className="flex-center">{user.username}</span>
         </div>
 
         <BsThreeDots

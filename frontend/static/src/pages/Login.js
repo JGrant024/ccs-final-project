@@ -23,12 +23,12 @@ const LoginForm = (props) => {
 
   const handleResponse = async (response) => {
     if (response.ok) {
+      console.log(response);
       const data = await response.json();
       Cookies.set("Authorization", `Token ${data.key}`);
-      props.setIsLoggedIn(true);
-      console.log(data);
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/");
+      props.setIsLoggedIn(true);
+      props.setLoggedInUser(data.user);
     } else {
       setError(response.statusText);
       throw new Error("Network response was not OK.");
@@ -45,9 +45,9 @@ const LoginForm = (props) => {
       body: JSON.stringify(userInfo),
     };
 
-    const response = await fetch("/dj-rest-auth/login/", options).catch(
-      () => handleError
-    );
+    const response = await fetch("/dj-rest-auth/login/", options)
+      .then(props.setIsLoggedIn(true))
+      .then(navigate("/"));
     handleResponse(response);
   };
 

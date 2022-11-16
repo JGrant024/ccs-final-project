@@ -34,6 +34,7 @@ export const Sidebar = (props) => {
       Cookies.remove("Authorization");
       props.setIsLoggedIn(false);
       localStorage.clear();
+      props.setLoggedInUser(null);
       navigate("/welcome");
     } else throw new Error("there was a network error");
   };
@@ -46,7 +47,7 @@ export const Sidebar = (props) => {
         "X-CSRFTOKEN": Cookies.get("csrftoken"),
       },
     };
-    const response = await fetch("dj-rest-auth/logout/", options).catch(
+    const response = await fetch("/dj-rest-auth/logout/", options).catch(
       () => handleError
     );
 
@@ -112,7 +113,7 @@ export const Sidebar = (props) => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to={`/profile/${user.id}`}
+          to={`/profile/${user?.id}`}
         >
           <BsPersonCircle className={styles.icon} />
           <p className="flex-center">My Profile</p>
@@ -123,7 +124,7 @@ export const Sidebar = (props) => {
         <div className={styles.account}>
           <BsPersonCircle className="avatar avatar-standard" />
 
-          <span className="flex-center">{user.username}</span>
+          <span className="flex-center">{user?.username}</span>
         </div>
 
         <BsThreeDots

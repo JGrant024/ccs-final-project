@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserProfile from "./pages/UserProfile";
 import Profile from "./pages/Profile";
@@ -12,49 +12,67 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState(null);
+  const testing = useRef("hi");
+  const user = JSON.parse(localStorage.getItem("user"));
+  const location = window.location;
+  console.log(location.pathname);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    const callback = () => {
-      if (user) {
-        setIsLoggedIn(true);
-        setLoggedInUser(user);
-      }
-    };
-    callback();
+    if (user) {
+      setIsLoggedIn(true);
+      setLoggedInUser(user);
+    }
   }, []);
+
+  console.log(isLoggedIn);
+  console.log(loggedInUser);
+
+  useEffect(() => {});
 
   return (
     <BrowserRouter>
-      <>
-        {/* {isLoggedIn && (
-          <Sidebar setIsLoggedIn={setIsLoggedIn} loggedInUser={loggedInUser} />
-        )} */}
-      </>
-      <Routes>
-        <Route path="welcome" element={<Welcome />} />
-        <Route
-          path="login"
-          element={
-            <LoginForm
-              setIsLoggedIn={setIsLoggedIn}
-              setLoggedInUser={setLoggedInUser}
-            />
-          }
-        />
-        <Route path="signup" element={<SignUp />} />
-        <Route path="/" element={<></>} />
-        <Route
-          path="/profile"
-          element={<Profile loggedInUser={loggedInUser} />}
-        />
-        <Route
-          path="/profile/:profileID"
-          element={<Profile loggedInUser={loggedInUser} />}
-        />
-        <Route path="group" element={<GroupProfile />} />
-        <Route path="testing" element={<UserProfile />} />
-      </Routes>
+      <div
+        className={`${
+          location.pathname !== "/login" &&
+          location.pathname !== "/signup" &&
+          location.pathname !== "/welcome" &&
+          "container"
+        }`}
+      >
+        {isLoggedIn && (
+          <Sidebar
+            setIsLoggedIn={setIsLoggedIn}
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
+          />
+        )}
+
+        <Routes>
+          <Route path="welcome" element={<Welcome />} />
+          <Route
+            path="login"
+            element={
+              <LoginForm
+                setIsLoggedIn={setIsLoggedIn}
+                setLoggedInUser={setLoggedInUser}
+              />
+            }
+          />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="/" element={<></>} />
+          <Route
+            path="/profile"
+            element={<Profile loggedInUser={loggedInUser} />}
+          />
+          <Route
+            path="/profile/:profileID"
+            element={<Profile loggedInUser={loggedInUser} />}
+          />
+          <Route path="group" element={<GroupProfile />} />
+          <Route path="testing" element={<UserProfile />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

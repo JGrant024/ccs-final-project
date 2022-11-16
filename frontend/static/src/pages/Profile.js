@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+/* eslint-disable no-undef */
+/* eslint-disable react/jsx-no-undef */
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { BsPersonCircle } from "react-icons/bs";
 import { useParams } from "react-router-dom";
@@ -12,133 +14,113 @@ const Profile = (props) => {
   console.log(profileID);
 
   useEffect(() => {
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": Cookies.get("csrftoken"),
-      },
+    const fetchUserDetails = async () => {
+      fetch(`/api/v1/users/profiles/user/${id}/`)
+        .then((response) => response.json())
+        .then((data) => setUserInfo(data));
     };
-
-    const response = fetch(`api/v1/users/profiles/user/${id}/`, options);
-    if (response.ok) {
-      console.log(response);
+    if (id) {
+      fetchUserDetails();
     }
   }, [id]);
 
   const [showModal, setShowModal] = useState(false);
   const [emptyFeedMessage, setEmptyFeedMessage] = useState(false);
 
-  // useEffect(() => {}, [profileID]);
+  useEffect(() => {}, [profileID]);
 
-  // useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
-  //   if (selectedUserDetailsLoading) {
-  //     return (
-  //       <>
-  //         <main className="main-container">
-  //           <h4 className="title">Profile</h4>
-  //           <h2>Loading...</h2>
-  //         </main>
-  //       </>
-  //     );
-  //   }
+  console.log(user);
 
+  // if (Boolean(user) === false) {
+  //   return (
+  //     <>
+  //       <main className="main-container">
+  //         <h4 className="title">Profile</h4>
+  //         <h2>Loading...</h2>
+  //       </main>
+  //     </>
+  //   );
+  // }
   return (
-    <>
-      {/* <main className="main-container">
-        <h4 className="title">Profile</h4>
-        <div className={styles.profileContainer}>
-          {selectedUserDetails?.photo ? (
-            <img
-              className={`avatar ${styles.profilePhoto}`}
-              src={selectedUserDetails?.photo}
-              alt="gojo"
-            />
-          ) : (
-            <BsPersonCircle className={styles.profilePhoto} />
-          )}
-
-          <section className={styles.profileInfo}>
-            <div>
-              <p className={styles.displayName}>
-                {props.loggedInUser.username}
-              </p>
-              <p className={styles.userName}>
-                @{selectedUserDetails?.userName}
-              </p>
-            </div> */}
-
-      {/* <p>{selectedUserDetails?.bio}</p> */}
-
-      {/* <div className={styles.followerFollowing}>
-              <p>{selectedUserDetails?.followers?.length} Followers</p>
-              <p>{selectedUserDetails?.following?.length} Following</p>
-            </div> */}
-
-      {/* {selectedUserDetails?.portfolioLink && (
-              <a
-                className={styles.portfolioLink}
-                href={selectedUserDetails?.portfolioLink}
-                target="__blank"
-              >
-                {selectedUserDetails?.portfolioLink}
-              </a>
-            )} */}
-      {/* </section> */}
-
-      {/* {id === profileID && (
-            <button onClick={() => setShowModal(true)} className="btn">
-              Edit
-            </button>
-          )} */}
-
-      {/* {id !== profileID &&
-            (userDetails?.following.some((user) => user === profileID) ? (
-              <button
-                onClick={() => console.log("testing")}
-                className="btn btn-outline"
-              >
-                Unfollow
-              </button>
-            ) : (
-              <button onClick={() => console.log("testing")} className="btn">
-                Follow
-              </button>
-            ))}
-        </div> */}
-      {/* {userPostsLoading ? (
-          <PostLoader />
+    <main className="main-container">
+      <h4 className="title">Profile</h4>
+      <div className={styles.profileContainer}>
+        {user?.photo ? (
+          <img
+            className={`avatar ${styles.profilePhoto}`}
+            src={user?.photo}
+            alt="gojo"
+          />
         ) : (
-          <InfiniteScroll
-            dataLength={userPosts.length} //This is important field to render the next data
-            next={() => dispatch(getNewUserPosts({ latestDoc, id: profileID }))}
-            hasMore={latestDoc === undefined ? false : true}
-            loader={<PostLoader />}
-            endMessage={
-              !emptyFeedMessage && (
-                <p style={{ textAlign: "center" }}>
-                  <b>Yay! You have seen it all</b>
-                </p>
-              )
-            }
+          <BsPersonCircle className={styles.profilePhoto} />
+        )}
+        <section className={styles.profileInfo}>
+          <div>
+            <p className={styles.displayName}>{props.loggedInUser?.username}</p>
+            <p className={styles.userName}>@{user?.userName}</p>
+          </div>
+        </section>
+        {<p>{user?.bio}</p>}
+        {
+          <div className={styles.followerFollowing}>
+            <p>{user?.followers?.length} Followers</p>
+            <p>{user?.following?.length} Following</p>
+          </div>
+        }
+        {user?.portfolioLink && (
+          <a
+            className={styles.portfolioLink}
+            href={user?.portfolioLink}
+            target="__blank"
           >
-            {userPosts?.map((post) => {
-              return <PostCard key={post.postID} {...post} />;
-            })}
-          </InfiniteScroll> */}
+            {user?.portfolioLink}
+          </a>
+        )}
+        {<section />}
+        <button
+          onClick={() => console.log("testing")}
+          className="btn btn-outline"
+        >
+          Unfollow
+        </button>
+        : (
+        <button onClick={() => console.log("testing")} className="btn">
+          Follow
+        </button>
+        )
+      </div>
 
-      {/* {newUserPostsLoading && <PostLoader />}  */}
-      {/* {emptyFeedMessage && id === profileID && (
-          <h2>Start posting already!</h2>
-        )} */}
-      {/* {emptyFeedMessage && id !== profileID && <h2>Wow... so empty..</h2>} */}
-      {/* <ProfileEditModal
+      {/* <InfiniteScroll
+        dataLength={user.length} //This is important field to render the next data
+        next={() => dispatch(getNewUserPosts({ latestDoc, id: profileID }))}
+        hasMore={latestDoc === undefined ? false : true}
+        loader={<PostLoader />}
+        endMessage={
+          !emptyFeedMessage && (
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          )
+        }
+      >
+        <PostLoader />;
+        {user?.map((post) => {
+          return <PostCard key={post.postID} {...post} />;
+        })}
+      </InfiniteScroll> */}
+
+      <h2>Start posting already!</h2>
+
+      {/* {
+        <ProfileEditModal
           setShowModal={() => setShowModal(false)}
           showModal={showModal}
-        />  */}
-      {/* </main> */}
-    </>
+        />
+      } */}
+      {<main />}
+    </main>
   );
 };
 

@@ -78,7 +78,7 @@ export const Sidebar = (props) => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to="/Explore"
+          to="/Recommendations"
         >
           <MdExplore className={styles.icon} />{" "}
           <p className="flex-center">Recommendations</p>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./sidebar.module.css";
 import {
@@ -11,14 +11,15 @@ import { BsPersonCircle, BsThreeDots } from "react-icons/bs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faOtter } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
+import { AiOutlinePlus } from "react-icons/ai";
 
-const LogoSection = () => {
+function LogoSection() {
   return (
     <section className={styles.logo}>
       <FontAwesomeIcon icon={faOtter} className="icon" />
     </section>
   );
-};
+}
 
 export const Sidebar = (props) => {
   const [dropDown, setDropDown] = useState(false);
@@ -77,10 +78,10 @@ export const Sidebar = (props) => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to="/explore"
+          to="/Explore"
         >
           <MdExplore className={styles.icon} />{" "}
-          <p className="flex-center">Explore</p>
+          <p className="flex-center">Recommendations</p>
         </NavLink>
 
         <NavLink
@@ -101,7 +102,7 @@ export const Sidebar = (props) => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to="/people"
+          to="/Otters"
         >
           <MdPeopleAlt className={styles.icon} />{" "}
           <p className="flex-center">Otters</p>
@@ -118,6 +119,15 @@ export const Sidebar = (props) => {
           <BsPersonCircle className={styles.icon} />
           <p className="flex-center">My Profile</p>
         </NavLink>
+      </section>
+
+      <section
+        className={styles.btnContainer}
+      >
+        <button className={`btn ${styles.newBtn}`}>
+          <AiOutlinePlus />
+        </button>
+        <p>New Post</p>
       </section>
 
       <section className={styles.accountSetting}>

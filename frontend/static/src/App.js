@@ -8,6 +8,8 @@ import SignUp from "./pages/SignUp";
 import Welcome from "./pages/Welcome";
 import GroupProfile from "./pages/Group";
 import { Sidebar } from "./components/Sidebar/Sidebar";
+import Recommendations from "./pages/Recommendations";
+import { Explore } from "./components/Sidebar/Explore";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -71,6 +73,8 @@ function App() {
           />
           <Route path="group" element={<GroupProfile />} />
           <Route path="testing" element={<UserProfile />} />
+          <Route path="/Recommendations" element={<Recommendations />} />
+          {/* <Route path="/" element={<Feed />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

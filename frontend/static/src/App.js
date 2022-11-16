@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import Welcome from "./pages/Welcome";
 import GroupProfile from "./pages/Group";
 import { Sidebar } from "./components/Sidebar/Sidebar";
+import { Otters } from "./pages/Otters";
 import Recommendations from "./pages/Recommendations";
 import { Explore } from "./components/Sidebar/Explore";
 
@@ -39,6 +40,7 @@ function App() {
           location.pathname !== "/login" &&
           location.pathname !== "/signup" &&
           location.pathname !== "/welcome" &&
+          location.pathname !== "/Otters" &&
           "container"
         }`}
       >
@@ -73,6 +75,7 @@ function App() {
           />
           <Route path="group" element={<GroupProfile />} />
           <Route path="testing" element={<UserProfile />} />
+          <Route path="/Otters" element={<Otters />} />
           <Route path="/Recommendations" element={<Recommendations />} />
           {/* <Route path="/" element={<Feed />} /> */}
         </Routes>

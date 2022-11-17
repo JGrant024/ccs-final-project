@@ -60,7 +60,7 @@ body {
   display: flex;
   height: 100%;
   max-width: var(--max-width);
-  margin: auto;
+
 }
 /* .btn {
   border-radius: 10px;

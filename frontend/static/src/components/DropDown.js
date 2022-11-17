@@ -10,7 +10,7 @@ import {
   setPostModal,
 } from "../../features/postsSlice";
 
-export const DropDown = (prop: Posts) => {
+export const DropDown = (prop) => {
   const [dropdown, setDropdown] = useState(false);
   const { id, userDetails } = useAppSelector((store) => store?.auth);
   const dispatch = useAppDispatch();

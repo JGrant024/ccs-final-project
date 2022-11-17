@@ -27,30 +27,26 @@ const Profile = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [emptyFeedMessage, setEmptyFeedMessage] = useState(false);
 
-  useEffect(() => {}, [profileID]);
-
-  useEffect(() => {}, []);
-
   console.log(user);
 
-  // if (Boolean(user) === false) {
-  //   return (
-  //     <>
-  //       <main className="main-container">
-  //         <h4 className="title">Profile</h4>
-  //         <h2>Loading...</h2>
-  //       </main>
-  //     </>
-  //   );
-  // }
+  if (Boolean(user) === false) {
+    return (
+      <>
+        <main className="main-container">
+          <h4 className="title">Profile</h4>
+          <h2>Loading...</h2>
+        </main>
+      </>
+    );
+  }
   return (
     <main className="main-container">
       <h4 className="title">Profile</h4>
       <div className={styles.profileContainer}>
-        {user?.photo ? (
+        {user?.profile_picture ? (
           <img
             className={`avatar ${styles.profilePhoto}`}
-            src={user?.photo}
+            src={user?.profile_picture}
             alt="gojo"
           />
         ) : (
@@ -91,34 +87,7 @@ const Profile = (props) => {
         </button>
         )
       </div>
-
-      {/* <InfiniteScroll
-        dataLength={user.length} //This is important field to render the next data
-        next={() => dispatch(getNewUserPosts({ latestDoc, id: profileID }))}
-        hasMore={latestDoc === undefined ? false : true}
-        loader={<PostLoader />}
-        endMessage={
-          !emptyFeedMessage && (
-            <p style={{ textAlign: "center" }}>
-              <b>Yay! You have seen it all</b>
-            </p>
-          )
-        }
-      >
-        <PostLoader />;
-        {user?.map((post) => {
-          return <PostCard key={post.postID} {...post} />;
-        })}
-      </InfiniteScroll> */}
-
       <h2>Start posting already!</h2>
-
-      {/* {
-        <ProfileEditModal
-          setShowModal={() => setShowModal(false)}
-          showModal={showModal}
-        />
-      } */}
       {<main />}
     </main>
   );

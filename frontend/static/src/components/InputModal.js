@@ -50,7 +50,7 @@ export const InputModal = () => {
       setSelectedFile("");
       setDisablebtn(false);
     }
-  }, [postModal]);
+  }else[postModal]);
 
   return (
     <div

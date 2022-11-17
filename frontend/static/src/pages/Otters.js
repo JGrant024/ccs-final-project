@@ -1,11 +1,17 @@
 /* eslint-disable no-undef */
 import { BsPersonCircle } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 export const Otters = () => {
-  const { allUsers, id, userDetails } = useAppSelector((store) => store.auth);
+  //there is where you store the data you receive back from the fetch request
+  const [allUsers, setAllUsers] = useState([]);
+
+  const id = "";
+  const userDetails = "";
+
   const otherUsers = allUsers.filter((user) => user.id !== id);
-  const dispatch = useAppDispatch();
+
   return (
     <>
       <main className="main-container">
@@ -27,18 +33,18 @@ export const Otters = () => {
               <NavLink to={`/profile/${id}`}>
                 <p className={styles.displayName}>{displayName}</p>
                 <p className={styles.userName}>@{userName}</p>
-              </NavLink>t
-
+              </NavLink>
+              t
               {userDetails?.following.some((user) => user === id) ? (
                 <button
-                  onClick={() => dispatch(followHandler(id))}
+                  // onClick={() => dispatch(followHandler(id))}
                   className="btn btn-outline"
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
-                  onClick={() => dispatch(followHandler(id))}
+                  // onClick={() => dispatch(followHandler(id))}
                   className="btn"
                 >
                   Follow

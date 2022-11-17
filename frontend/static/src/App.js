@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LoadScript } from "@react-google-maps/api";
 import UserProfile from "./pages/UserProfile";
 import Profile from "./pages/Profile";
 import LoginForm from "./pages/Login";
@@ -10,7 +11,7 @@ import GroupProfile from "./pages/Group";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Otters } from "./pages/Otters";
 import Recommendations from "./pages/Recommendations";
-import { Explore } from "./components/Sidebar/Explore";
+import { Explore } from "./components/Explore";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,6 +20,7 @@ function App() {
   const user = JSON.parse(localStorage.getItem("user"));
   const location = window.location;
   console.log(location.pathname);
+  const libraries = ["places"];
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -40,7 +42,6 @@ function App() {
           location.pathname !== "/login" &&
           location.pathname !== "/signup" &&
           location.pathname !== "/welcome" &&
-          location.pathname !== "/Otters" &&
           "container"
         }`}
       >
@@ -75,10 +76,18 @@ function App() {
           />
           <Route path="group" element={<GroupProfile />} />
           <Route path="testing" element={<UserProfile />} />
-          <Route path="/Otters" element={<Otters />} />
+          <Route path="/otters" element={<Otters />} />
           <Route path="/Recommendations" element={<Recommendations />} />
           {/* <Route path="/" element={<Feed />} /> */}
         </Routes>
+        {isLoggedIn && (
+          <LoadScript
+            googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4"
+            libraries={libraries}
+          >
+            <Recommendations />
+          </LoadScript>
+        )}
       </div>
     </BrowserRouter>
   );

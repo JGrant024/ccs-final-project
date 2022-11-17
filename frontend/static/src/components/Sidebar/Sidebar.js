@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./sidebar.module.css";
 import {
@@ -121,9 +121,7 @@ export const Sidebar = (props) => {
         </NavLink>
       </section>
 
-      <section
-        className={styles.btnContainer}
-      >
+      <section className={styles.btnContainer}>
         <button className={`btn ${styles.newBtn}`}>
           <AiOutlinePlus />
         </button>

@@ -42,7 +42,7 @@ function Recommendations(props) {
     services.nearbySearch(nearbyRequest, getSearchByResults);
   }, [setSearchByResults, searchByResults]);
 
-  console.log(searchByResults);
+  console.log(searchByResults.map((x) => console.log(x.name)));
   return <div id="map"></div>;
 }
 

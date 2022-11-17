@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react"
 function Recommendations(props) {
   const [recommendation, setRecommendation] = useState({});
   const [searchByResults, setSearchByResults] = useState([]);
@@ -43,7 +42,9 @@ function Recommendations(props) {
   }, [setSearchByResults, searchByResults]);
 
   console.log(searchByResults.map((x) => console.log(x.name)));
-  return <div id="map"></div>;
+  return <div id="map">
+    
+  </div>;
 }
 
 export default Recommendations;

@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import { BsPersonCircle } from "react-icons/bs";
 import { useParams } from "react-router-dom";
 import styles from "./profile.module.css";
+import Button from 'react-bootstrap/Button';
 
 const Profile = (props) => {
   const { profileID } = useParams();
@@ -71,19 +72,24 @@ const Profile = (props) => {
           </a>
         )}
         {<section />}
-        <button
-          onClick={() => console.log("testing")}
-          className="btn btn-outline"
-        >
-          Unfollow
-        </button>
-        :
+        
+      <Button variant="primary">Primary</Button>{' '}
+      <Button variant="secondary">Secondary</Button>{' '}
+      <Button variant="success">Success</Button>{' '}
+      <Button variant="warning">Warning</Button>{' '}
+      <Button variant="danger">Danger</Button>{' '}
+      <Button variant="info">Info</Button>{' '}
+      <Button variant="light">Light</Button>{' '}
+      <Button variant="dark">Dark</Button> <Button variant="link">Link</Button>
         <button onClick={() => console.log("testing")} className="btn">
           Follow
         </button>
       </div>
       <h2>Start posting already!</h2>
-      <aside></aside>
+      <br></br>
+     <div>
+      Comment Section   
+     </div>
       {<main />}
     </main>
   );

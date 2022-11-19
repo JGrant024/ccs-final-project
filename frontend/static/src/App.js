@@ -10,9 +10,10 @@ import Welcome from "./pages/Welcome";
 import GroupProfile from "./pages/Group";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Otters } from "./pages/Otters";
+import Places from "./pages/Places";
 import Recommendations from "./pages/Recommendations";
-import TestingRecommendations from "./pages/TestingRecommendations";
-import { Explore } from "./components/Explore";
+import RecommendationsList from "./pages/RecommendationsList";
+import Events from "./components/Events";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -76,18 +77,17 @@ function App() {
           <Route path="group" element={<GroupProfile />} />
           <Route path="testing" element={<UserProfile />} />
           <Route path="/otters" element={<Otters />} />
-          <Route path="/Recommendations" element={<Recommendations />} />
+          <Route path="/recommendations" element={<RecommendationsList />} />
+          <Route path="/events" element={<Events />} />
           notes
           {/* <Route path="/" element={<Feed />} /> */}
         </Routes>
-        {isLoggedIn && (
-          <TestingRecommendations searchByResults={searchByResults} />
-        )}
+        {isLoggedIn && <Recommendations searchByResults={searchByResults} />}
         <LoadScript
           googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4"
           libraries={libraries}
         >
-          <Recommendations
+          <Places
             setSearchByResults={setSearchByResults}
             searchByResults={searchByResults}
           />

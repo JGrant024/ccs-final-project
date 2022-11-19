@@ -78,7 +78,7 @@ export const Sidebar = (props) => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to="/Recommendations"
+          to="/recommendations"
         >
           <MdExplore className={styles.icon} />{" "}
           <p className="flex-center">Recommendations</p>
@@ -90,10 +90,10 @@ export const Sidebar = (props) => {
               ? `${styles.iconContainer} ${styles.active} `
               : `${styles.iconContainer}`
           }
-          to="/bookmark"
+          to="/events"
         >
           <MdBookmark className={styles.icon} />{" "}
-          <p className="flex-center">Bookmarks</p>
+          <p className="flex-center">Events</p>
         </NavLink>
 
         <NavLink

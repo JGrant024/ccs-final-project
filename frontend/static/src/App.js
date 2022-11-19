@@ -11,6 +11,7 @@ import GroupProfile from "./pages/Group";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Otters } from "./pages/Otters";
 import Recommendations from "./pages/Recommendations";
+import TestingRecommendations from "./pages/TestingRecommendations";
 import { Explore } from "./components/Explore";
 
 function App() {
@@ -19,8 +20,9 @@ function App() {
   const testing = useRef("hi");
   const user = JSON.parse(localStorage.getItem("user"));
   const location = window.location;
-  console.log(location.pathname);
+
   const libraries = ["places"];
+  const [searchByResults, setSearchByResults] = useState([]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -29,9 +31,6 @@ function App() {
       setLoggedInUser(user);
     }
   }, []);
-
-  console.log(isLoggedIn);
-  console.log(loggedInUser);
 
   useEffect(() => {});
 
@@ -78,16 +77,21 @@ function App() {
           <Route path="testing" element={<UserProfile />} />
           <Route path="/otters" element={<Otters />} />
           <Route path="/Recommendations" element={<Recommendations />} />
+          notes
           {/* <Route path="/" element={<Feed />} /> */}
         </Routes>
         {isLoggedIn && (
-          <LoadScript
-            googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4"
-            libraries={libraries}
-          >
-            <Recommendations />
-          </LoadScript>
+          <TestingRecommendations searchByResults={searchByResults} />
         )}
+        <LoadScript
+          googleMapsApiKey="AIzaSyABLxEcVSAK2EWpfE3VSI5zS_3MwFSB_X4"
+          libraries={libraries}
+        >
+          <Recommendations
+            setSearchByResults={setSearchByResults}
+            searchByResults={searchByResults}
+          />
+        </LoadScript>
       </div>
     </BrowserRouter>
   );

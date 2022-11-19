@@ -10,8 +10,6 @@ const Profile = (props) => {
   const { profileID } = useParams();
   const id = props.loggedInUser?.id;
   const [user, setUserInfo] = useState();
-  console.log({ id });
-  console.log(profileID);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -27,14 +25,12 @@ const Profile = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [emptyFeedMessage, setEmptyFeedMessage] = useState(false);
 
-  console.log(user);
-
   if (Boolean(user) === false) {
     return (
       <>
         <main className="main-container">
           <h4 className="title">Profile</h4>
-          <h2>Loading...</h2>
+          <h2></h2>
         </main>
       </>
     );
@@ -81,19 +77,16 @@ const Profile = (props) => {
         >
           Unfollow
         </button>
-        : 
+        :
         <button onClick={() => console.log("testing")} className="btn">
           Follow
         </button>
-       
       </div>
       <h2>Start posting already!</h2>
-
+      <aside></aside>
       {<main />}
     </main>
   );
-
-
 };
 
 export default Profile;

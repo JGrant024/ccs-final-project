@@ -18,7 +18,7 @@ function Recommendations(props) {
 
     const nearbyRequest = {
       location: { lat: 34.8526, lng: -82.394 },
-      types: ["pharmacy"],
+      types: ["spa"],
       radius: 50000,
 
       // Defines the distance (in meters) within which to return place results. You may bias results to a specified circle by passing a location and a radius parameter. Doing so instructs the Places service to prefer showing results within that circle; results outside of the defined area may still be displayed.

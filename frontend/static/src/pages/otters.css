@@ -1,0 +1,25 @@
+.userContainer {
+    box-shadow: var(--light-shadow);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.userContainer button {
+    margin-left: auto;
+}
+
+.displayName {
+    color: var(--font-color-light);
+}
+
+.userName {
+    line-height: 0;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--clr-grey-60);
+}

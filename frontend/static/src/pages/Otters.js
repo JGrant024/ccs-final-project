@@ -2,6 +2,7 @@
 import { BsPersonCircle } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import styles from "../pages/"
 
 export const Otters = () => {
   //there is where you store the data you receive back from the fetch request
@@ -37,14 +38,13 @@ export const Otters = () => {
               t
               {userDetails?.following.some((user) => user === id) ? (
                 <button
-                  // onClick={() => dispatch(followHandler(id))}
                   className="btn btn-outline"
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
-                  // onClick={() => dispatch(followHandler(id))}
+                  
                   className="btn"
                 >
                   Follow

@@ -10,7 +10,6 @@ const LoginForm = (props) => {
     password: "",
   });
   const [error, setError] = useState();
-
   const handleInput = (event) => {
     const { id } = event.target;
     const { value } = event.target;

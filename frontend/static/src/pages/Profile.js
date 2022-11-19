@@ -81,16 +81,19 @@ const Profile = (props) => {
         >
           Unfollow
         </button>
-        : (
+        : 
         <button onClick={() => console.log("testing")} className="btn">
           Follow
         </button>
-        )
+       
       </div>
       <h2>Start posting already!</h2>
+
       {<main />}
     </main>
   );
+
+
 };
 
 export default Profile;

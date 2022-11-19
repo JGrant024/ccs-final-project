@@ -53,3 +53,9 @@
 .portfolioLink:hover {
   text-decoration: underline;
 }
+
+.button {
+  width: 100px;
+  border-radius: 15%;
+  
+}

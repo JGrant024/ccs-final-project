@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-// import { useAppDispatch, useAppSelector } from "../../app/hooks";
+;
 // import { PostCard, PostLoader } from "../../components";
 // import { getNewPosts, getPosts, setLastDoc } from "../../features/postsSlice";
 // import { useFilterPosts } from "../../hooks/useFilterPosts";

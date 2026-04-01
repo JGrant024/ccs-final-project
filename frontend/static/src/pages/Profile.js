@@ -58,8 +58,8 @@ const Profile = (props) => {
         {<p>{user?.bio}</p>}
         {
           <div className={styles.followerFollowing}>
-            <p>{user?.followers?.length} Followers</p>
-            <p>{user?.following?.length} Following</p>
+            <p>{user?.followers?.length} Followers 0</p>
+            <p>{user?.following?.length} Following 0</p>
           </div>
         }
         {user?.portfolioLink && (
@@ -75,9 +75,9 @@ const Profile = (props) => {
         <Button variant="primary" size="lg" className={styles.button}>
           Follow
         </Button>{" "}
-        <button onClick={() => console.log("testing")} className={styles.button}>
+        <Button onClick={() => console.log("testing")} className={styles.button}>
           Unfollow
-        </button>
+        </Button>
       </div>
       <h2>Start posting already!</h2>
       <br></br>
@@ -87,4 +87,4 @@ const Profile = (props) => {
   );
 };
 
-export default Profile;
+export default Profile; 

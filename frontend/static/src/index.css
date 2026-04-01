@@ -62,15 +62,15 @@ body {
   max-width: var(--max-width);
 
 }
-/* .btn {
+.btn {
   border-radius: 10px;
   background-color: var(--primary-color);
-} */
-/* .btn-outline {
+} 
+ .btn-outline {
   background: none;
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
-} */
+} 
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -209,3 +209,4 @@ body {
     var(--card-color)
   );
 }
+

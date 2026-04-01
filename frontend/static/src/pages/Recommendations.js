@@ -39,9 +39,9 @@ const Recommendations = (props) => {
               {/* <p className={styles.userName} */}
             </NavLink>
 
-            <button
+            <button variant="primary" size="lg" className={styles.button}
               onClick={() => console.log("testing")}
-              className="btn btn-outline"
+    
             >
               Add Event
             </button>
